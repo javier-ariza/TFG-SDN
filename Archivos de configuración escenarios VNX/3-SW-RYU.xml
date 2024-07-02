@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+~~~~~~~~~~~~~~~~~~~~
+VNX Sample scenarios
+~~~~~~~~~~~~~~~~~~~~
+
+Name:        final-3-sw
+Description: 
+
+This file is part of the Virtual Networks over LinuX (VNX) Project distribution. 
+(www: http://www.dit.upm.es/vnx - e-mail: vnx@dit.upm.es) 
+
+Departamento de Ingenieria de Sistemas Telematicos (DIT)
+Universidad Politecnica de Madrid
+SPAIN
+
+-->
+
+
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
+  <global>
+    <version>2.0</version>
+    <scenario_name>final-3-sw</scenario_name>
+    <automac offset="1"/>
+    <!--vm_mgmt type="none" /!-->
+    <vm_mgmt type="private" network="10.252.0.0" mask="24" offset="0">
+       <host_mapping />
+    </vm_mgmt> 
+    <vm_defaults>
+        <console id="0" display="no"/>
+        <console id="1" display="yes"/>
+    </vm_defaults>
+  </global>
+    
+  <net name="sw-eth2" mode="openvswitch" external="usbeth2"/>
+  <net name="sw-eth4" mode="openvswitch" external="usbeth4"/>
+  <net name="sw-eth5" mode="openvswitch" external="usbeth5"/>
+  <net name="sw-eth8" mode="openvswitch" external="usbeth8"/>
+  <net name="sw-eth20" mode="openvswitch" external="usbeth20"/>
+  <net name="sw-eth25" mode="openvswitch" external="usbeth25"/>
+  <net name="sw-eth26" mode="openvswitch" external="usbeth26"/>
+  <net name="sw-eth27" mode="openvswitch" external="usbeth27"/>
+  <net name="sw-eth28" mode="openvswitch" external="usbeth28"/>
+  <net name="virbr0" mode="virtual_bridge" managed="no"/>
+  
+  <vm name="c0" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth2">
+      <ipv4>10.10.253.1/24</ipv4>
+    </if>
+	<if id="2" net="sw-eth26">
+      <ipv4>10.10.254.1/24</ipv4>
+    </if>
+	<if id="3" net="sw-eth25">
+      <ipv4>10.10.255.1/24</ipv4>
+    </if>
+    <if id="4" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+	<!-- Install SDN Controller (Ryu) -->
+    <exec seq="install-ryu" type="verbatim" ostype="system">
+    apt-get update -y
+    sudo apt-get install -y pip
+    pip install ryu
+    pip3 install eventlet==0.30.2
+    sudo apt-get install -y curl
+    sudo apt-get install -y git
+    git clone git clone https://github.com/martimy/flowmanager
+    </exec>
+
+  </vm>
+
+  <vm name="h1" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth5">
+      <ipv4>10.10.2.1/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+
+  <vm name="h2" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth8">
+      <ipv4>10.10.2.2/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+
+  <vm name="h3" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth27">
+      <ipv4>10.10.2.3/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+
+  <vm name="h4" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth28">
+      <ipv4>10.10.2.4/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+
+  <vm name="h5" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth4">
+      <ipv4>10.10.2.5/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+  
+  <vm name="h6" type="lxc" exec_mode="lxc-attach" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="sw-eth20">
+      <ipv4>10.10.2.6/24</ipv4>
+    </if>
+    <if id="2" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+  
+
+
+  <!--host>
+    <hostif net="atica-vlan">
+       <ipv4>10.1.11.10/24</ipv4>
+    </hostif>
+  </host!-->
+  
+</vnx>
