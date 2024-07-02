@@ -6,7 +6,7 @@
 VNX Sample scenarios
 ~~~~~~~~~~~~~~~~~~~~
 
-Name:        final-3-sw
+Name:        3-SW-RYU
 Description: 
 
 This file is part of the Virtual Networks over LinuX (VNX) Project distribution. 
@@ -23,7 +23,7 @@ SPAIN
   xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
   <global>
     <version>2.0</version>
-    <scenario_name>final-3-sw</scenario_name>
+    <scenario_name>3-SW-RYU</scenario_name>
     <automac offset="1"/>
     <!--vm_mgmt type="none" /!-->
     <vm_mgmt type="private" network="10.252.0.0" mask="24" offset="0">
@@ -68,7 +68,7 @@ SPAIN
     pip3 install eventlet==0.30.2
     sudo apt-get install -y curl
     sudo apt-get install -y git
-    git clone git clone https://github.com/martimy/flowmanager
+    git clone https://github.com/martimy/flowmanager
     </exec>
 
   </vm>
