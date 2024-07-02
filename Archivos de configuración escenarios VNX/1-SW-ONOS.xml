@@ -36,18 +36,16 @@ SPAIN
   </global>
     
 
+
   <net name="sw-eth5" mode="openvswitch" external="usbeth5"/>
   <net name="sw-eth8" mode="openvswitch" external="usbeth8"/>
   <net name="sw-eth25" mode="openvswitch" external="usbeth25"/>
-  <net name="sw-eth2" mode="openvswitch" external="usbeth2"/>
-  <net name="sw-eth4" mode="openvswitch" external="usbeth4"/>
-  <net name="sw-eth20" mode="openvswitch" external="usbeth20"/>
   <net name="virbr0" mode="virtual_bridge" managed="no"/>
 
   
   <vm name="c0" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">filesystems/rootfs_lxc_ubuntu64-onos</filesystem>
-	<if id="1" net="sw-eth2">
+	<if id="1" net="sw-eth25">
       <ipv4>10.10.253.1/24</ipv4>
     </if>
     <if id="4" net="virbr0">
@@ -64,18 +62,11 @@ SPAIN
     <exec seq="config-ONOS" type="verbatim">
         /root/conf/start-ONOS.sh
     </exec>	
-	<!-- Install SDN Controller (Ryu) -->
-    <exec seq="install-ryu" type="verbatim" ostype="system">
-		apt-get update -y
-		sudo apt-get install -y pip
-		pip install ryu
-		pip3 install eventlet==0.30.2
-	</exec>
   </vm>
 
   <vm name="h1" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-    <if id="1" net="sw-eth4">
+    <if id="1" net="sw-eth5">
       <ipv4>10.10.2.1/24</ipv4>
     </if>
     <if id="2" net="virbr0">
@@ -85,7 +76,7 @@ SPAIN
 
   <vm name="h2" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-    <if id="1" net="sw-eth20">
+    <if id="1" net="sw-eth8">
       <ipv4>10.10.2.2/24</ipv4>
     </if>
     <if id="2" net="virbr0">
