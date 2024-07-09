@@ -5,11 +5,14 @@ A continuación, se detalla por bloques cada uno de los archivos existentes en e
 
 
 Bloque I: Carpeta de archivos de configuración de escenarios virtualizados VNX. Se han desarrollado a partir de los ejemplos de [1] Se selecciona el escenario en función del número de conmutadores (1 o 3) y el controlador SDN (Ryu u ONOS). Por ejemplo: Para un conmutador con el controlador SDN Ryu se despliega el escenario 1-SW-RYU. Se utiliza con VNX previamente instalado, y despliega el escenario con el comando:
-vnx -t 1-SW-RYU.xml –create
+
+sudo vnx -f 1-SW-RYU.xml -t
+
 
 Bloque II: En el archivo 'ConfiruacionDeConmutadores' se encuentra la configuración de los conmutadores SDN cuando se desplegó la topología de red con tres conmutadores gobernados por el mismo controlador SDN. Los comandos utilizados en estas configuraciones (y el resto en el desarrollo del TFG) se encuentran en la guía openflow de los conmutadores Dell [2] y Aruba [3]
 
 Bloque III: Por último, en este repositorio se encuentra la aplicación para el controlador Ryu denominada simple_switch_13_tagged.py. Este aplicación se ha desarrollado a partir de [4]. Para lanzarla se ejecuta el siguiente comando desde un terminal en el controlador c0:
+
 ryu-manager ryu.app.simple_switch_13_tagged
 
 
