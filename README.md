@@ -24,5 +24,5 @@ Referencias:
 
 [3] Hewlett Packard Enterprise Development LP., «Aruba OpenFlow 1.3 Administrator Guide for  ArubaOS-Switch 16.07,» 2018. [En línea]. Available: https://techhub.hpe.com/eginfolib/Aruba/16.07/5200-5374/index.html#c_Configuring_OpenFlow.html. [Último acceso: Junio 2024].
 
-[4] Departamento en Ingeniería de Sistemas Telemáticos, «Prácticas 2.4 y 2.2 de la asignatura RDSV/SDNV del MUIT de la ETSIT (UPM),» DIT, Madrid, 2024
+[4] Departamento en Ingeniería de Sistemas Telemáticos (DIT), «Prácticas 2.4 y 2.2 de la asignatura RDSV/SDNV del MUIT de la ETSIT (UPM),» DIT, Madrid, 2024
 
